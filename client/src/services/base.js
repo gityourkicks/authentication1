@@ -43,13 +43,17 @@ function json(url, method = 'GET', payload = {}) {
         delete data.body;
     }
     return makeFetch(url, data)
-    .then((response) => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw response;
-        }
-    });
+        .then((response) => {
+            if (response.ok) {
+                if (response.headers.get('Content-Type').indexOf('application/json') > -1) {
+                    return response.json();
+                }
+
+                return response.statusText;
+            } else {
+                throw response;
+            }
+        });
 }
 
 function get(url) {

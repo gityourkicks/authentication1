@@ -11,7 +11,7 @@ class Table {
     getOne(id) {
         let sql = `SELECT * FROM ${this.tableName} WHERE id = ${id};`;
         return executeQuery(sql, [id])
-        .then((results) => results[0]);
+            .then((results) => results[0]);
     }
 
     getAll() {
@@ -20,6 +20,7 @@ class Table {
     }
 
     find(query) {
+        console.log(query);
         let columns = Object.keys(query);
         let values = Object.values(query);
         let conditions = columns.map((columnName) => {
@@ -35,7 +36,7 @@ class Table {
         let placeholderString = generatePlaceholders(values);
         let sql = `INSERT INTO ${this.tableName} (${columns.join(',')}) VALUES (${placeholderString});`;
         return executeQuery(sql, values)
-        .then((results) => ({id: results.insertId }));
+            .then((results) => ({ id: results.insertId }));
     }
 
     update(id, row) {
