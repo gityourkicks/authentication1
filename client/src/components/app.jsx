@@ -5,7 +5,12 @@ import GoodbyeWorld from './goodbye';
 import PrivateRoute from './auth/privateRoute';
 import Login from './auth/login';
 import Logout from './auth/logout';
-import AuthButton from './auth/authButton';
+import Header from './auth/header';
+import Blogs from './blogs';
+import SingleBlog from './single';
+import Nav from './nav';
+import PublicBlogs from './publicblogs';
+import PublicSingle from './publicsingle';
 
 class Navigation extends Component {
 
@@ -13,13 +18,16 @@ class Navigation extends Component {
         return (
             <Router>
                 <Fragment>
-                    <Link to="/goodbye">Goodbye</Link>
-                    <AuthButton />
+                    {/* <Link to="/goodbye">Goodbye</Link> */}
+                    <Header />
                     <Switch>
-                        <Route exact path="/" component={HelloWorld} />
+                        <Route exact path="/" component={PublicBlogs} />
+                        <PrivateRoute exact path="/admin" component={Blogs} />
                         <Route path="/login" component={Login} />
                         <Route path="/logout" component={Logout} />
-                        <PrivateRoute path="/goodbye" component={GoodbyeWorld} />
+                        <Route exact path="/:id" component={PublicSingle} />
+                        <PrivateRoute exact path="/admin/:id" component={SingleBlog} />
+
                     </Switch>
                 </Fragment>
             </Router>
