@@ -11,6 +11,7 @@ import SingleBlog from './single';
 import Nav from './nav';
 import PublicBlogs from './publicblogs';
 import PublicSingle from './publicsingle';
+import Contact from './contact';
 
 class Navigation extends Component {
 
@@ -24,6 +25,7 @@ class Navigation extends Component {
                         <Route exact path="/" component={PublicBlogs} />
                         <PrivateRoute exact path="/admin" component={Blogs} />
                         <Route path="/login" component={Login} />
+                        <Route exact path="/contact" component={Contact} />
                         <Route path="/logout" component={Logout} />
                         <Route exact path="/:id" component={PublicSingle} />
                         <PrivateRoute exact path="/admin/:id" component={SingleBlog} />
